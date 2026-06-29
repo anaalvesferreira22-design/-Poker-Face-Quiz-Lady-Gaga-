@@ -1,0 +1,152 @@
+/* Variáveis de Cores e Estilo */
+:root {
+    --bg-color: #f7f9fc;
+    --text-color: #2d3748;
+    --card-bg: #ffffff;
+    --shadow: rgba(0, 0, 0, 0.1);
+    
+    /* Cores dos Cards pedidas */
+    --color-bordo: #800020;
+    --color-roxo: #6b46c1;
+    --color-rosa: #d53f8c;
+    --color-azul: #3182ce;
+    
+    --font-base-size: 16px;
+}
+
+/* Modo Escuro */
+[data-theme="dark"] {
+    --bg-color: #1a202c;
+    --text-color: #e2e8f0;
+    --card-bg: #2d3748;
+    --shadow: rgba(0, 0, 0, 0.4);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-size: var(--font-base-size);
+    padding-bottom: 50px;
+}
+
+/* Barra de Acessibilidade */
+.accessibility-bar {
+    position: sticky;
+    top: 0;
+    background: var(--card-bg);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    box-shadow: 0 2px 5px var(--shadow);
+    z-index: 100;
+}
+
+.accessibility-bar button {
+    background: transparent;
+    border: 2px solid var(--text-color);
+    color: var(--text-color);
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.accessibility-bar button:hover {
+    opacity: 0.8;
+}
+
+header {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+/* Container dos Cards */
+.flashcards-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 20px;
+}
+
+/* Estrutura do Flashcard (Efeito Flip) */
+.flashcard {
+    background-color: transparent;
+    height: 220px;
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px var(--shadow);
+    border-radius: 15px;
+}
+
+/* Classe aplicada via JS ao clicar */
+.flashcard.flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border-radius: 15px;
+    font-weight: 600;
+}
+
+/* Cores Temáticas do Enunciado (Frente) */
+.flashcard.bordo .card-front { background-color: var(--color-bordo); color: #fff; }
+.flashcard.roxo .card-front { background-color: var(--color-roxo); color: #fff; }
+.flashcard.rosa .card-front { background-color: var(--color-rosa); color: #fff; }
+.flashcard.azul .card-front { background-color: var(--color-azul); color: #fff; }
+
+/* Verso (Resposta) adaptável ao tema claro/escuro */
+.card-back {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    transform: rotateY(180deg);
+    border: 3px solid;
+    font-weight: normal;
+}
+
+/* Borda do verso combinando com a cor do card */
+.flashcard.bordo .card-back { border-color: var(--color-bordo); }
+.flashcard.roxo .card-back { border-color: var(--color-roxo); }
+.flashcard.rosa .card-back { border-color: var(--color-rosa); }
+.flashcard.azul .card-back { border-color: var(--color-azul); }
+
+footer {
+    text-align: center;
+    margin-top: 40px;
+    opacity: 0.7;
+    font-size: 0.9rem;
+}
